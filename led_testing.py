@@ -104,7 +104,7 @@ def whichBehavior(frames,night,off,LED):
     HSV_DIST_THR=0.2
     #Fraction of changed pxls in order 
     # to consider that the LED color is different from off state.
-    CHANGED_COLOR_FRACTION_THR = 0.01
+    CHANGED_COLOR_FRACTION_THR = 0.013
     #The difference between 'a' and 'b' channels in L*a*b* space 
     # is lower for orange and higher for red.  
     RED_ORANGE_a_b_diff_THR = 24 if night else 35
@@ -238,7 +238,7 @@ def pure_ed500_led_test(rgw_hostname, rgw_port, rgw_username, rgw_pass,camera_ho
 
     #load model 
     logging.debug('Loading model...')
-    try: model=models.LedsSchemeModel()
+    try: model=models.DisplayLedsSchemeModel()
     except Exception: sys.exit('Failed to load model')
 
     #switch camera to defaults

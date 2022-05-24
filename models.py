@@ -4,7 +4,7 @@ import paths
 import numpy as np
 import cv2
 import os
-os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
+#os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 
 def get_detections(img,detection_fn):
     image_np = np.array(img)
@@ -45,7 +45,7 @@ def sort_leds(leds_detections):
                
 class LedsSchemeModel:
     def __init__(self):
-            self.detect_fn=tf.saved_model.load(globals.LEDS_SCHEME_MODEL_PATH)
+            self.detect_fn=tf.saved_model.load(paths.LEDS_SCHEME_MODEL_PATH)
     def detect(self, img):
         detections=get_detections(img, self.detect_fn)
         leds = sort_leds(detections)
@@ -59,8 +59,8 @@ class LedsSchemeModel:
 
 class DisplayLedsSchemeModel:
     def __init__(self):
-        self.detect_display_fn=tf.saved_model.load(globals.DISPLAY_MODEL_PATH)
-        self.detect_led_fn=tf.saved_model.load(globals.LEDS_MODEL_PATH)
+        self.detect_display_fn=tf.saved_model.load(paths.DISPLAY_MODEL_PATH)
+        self.detect_led_fn=tf.saved_model.load(paths.LEDS_MODEL_PATH)
 
     def detect(self, img):
         display_detections=get_detections(img, self.detect_display_fn)
